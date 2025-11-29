@@ -7,9 +7,22 @@ function [salEva, salEP] = newton_raphson(funcion,derivada,x0,EP)
 %---------------------------------------
 %funcion=función a evaluar 
 %derivada= derivad de la función f(x), tanto la función como su derivada
-%deben de ser una función anonima o HANDLE
+%deben de ser una función anonima o HANDLE.
 %x0: punto inicial
 %EP: Erorr porcentual deseado
+
+error_actual=100000000; %Le pongo un valor grande deliberadamente, para iniciar el ciclo.
+while error_actual > EP
+
+    if derivada(x0)==0
+        
+    x1 = x0 - funcion(x0) / derivada(x0); % Calculo de la nueva xr.
+    error_actual = abs((x1 - x0) / x1) * 100; 
+    x0 = x1; %Se actualiza el nuevo punto para la próxima iteración.
+end
+
+salEva = x1; 
+salEP = error_actual; 
 
 
 end

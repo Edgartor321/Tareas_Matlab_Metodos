@@ -13,6 +13,12 @@ function [salEva, salEP] = newton_raphson(funcion,derivada,x0,EP)
 
 error_actual=100000000; %Le pongo un valor grande deliberadamente, para iniciar el ciclo.
 while error_actual > EP
+
+    if derivada(x0)==0  % Para evitar una indeterminación por dividir entre cero
+        error('La derivada es cero. No se puede continuar con el método.  :(');
+
+    end
+
     x1 = x0 - funcion(x0) / derivada(x0); % Calculo de la nueva xr.
     error_actual = abs((x1 - x0) / x1) * 100; 
     x0 = x1; %Se actualiza el nuevo punto para la próxima iteración.
