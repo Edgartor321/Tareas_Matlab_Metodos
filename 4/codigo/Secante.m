@@ -1,4 +1,4 @@
-function [salEva,salEP] = Secante(funcion,a,b,EP)
+function [salEva, salEP] = Secante(funcion,a,b,EP)
 %Función para realizar método de la secante
 %salEva=xn ó raíz de la función
 %salPE= Error porcentual de la raíz
@@ -8,10 +8,15 @@ function [salEva,salEP] = Secante(funcion,a,b,EP)
 %b: punto x1-
 %PE: Erorr porcentual deseado
 error_actual=100000000; %Le pongo un valor grande deliberadamente, para iniciar el ciclo.
+salEP=error_actual;
 while error_actual > EP
+
     salEva = b - (funcion(b) * (b - a)) / (funcion(b) - funcion(a)); % Calculo de xr
     error_actual = abs((salEva - b) / salEva) * 100; %Calculo del error porcentual de esta iteracion
     a = b;
     b = salEva; 
     salEP = error_actual;
+end
+%fprintf('Raiz: %.6f%%\n',salEva);
+%fprintf('Error porcentual: %.6f%%\n', salEP);
 end
