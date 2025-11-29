@@ -1,12 +1,12 @@
 function [salEva, salEP] = Secante(funcion,a,b,EP)
 %Función para realizar método de la secante
 %salEva=xn ó raíz de la función
-%salPE= Error porcentual de la raíz
+%salEP= Error porcentual de la raíz
 %---------------------------------------
 %funcion=función a evaluar 
 %a: punto x0
 %b: punto x1-
-%PE: Erorr porcentual deseado
+%EP: Erorr porcentual deseado
 error_actual=100000000; %Le pongo un valor grande deliberadamente, para iniciar el ciclo.
 salEP=error_actual;
 while error_actual > EP
@@ -17,6 +17,4 @@ while error_actual > EP
     b = salEva; 
     salEP = error_actual;
 end
-%fprintf('Raiz: %.6f%%\n',salEva);
-%fprintf('Error porcentual: %.6f%%\n', salEP);
 end
