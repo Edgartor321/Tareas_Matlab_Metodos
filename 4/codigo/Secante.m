@@ -10,6 +10,9 @@ function [salEva, salEP] = Secante(funcion,a,b,EP)
 error_actual=100000000; %Le pongo un valor grande deliberadamente, para iniciar el ciclo.
 salEP=error_actual;
 while error_actual > EP
+    if (funcion(b)-funcion(a)==0)
+        error('División por cero en el método de la secante.'); % Para evitar una indeterminación por dividir entre cero.
+    end 
 
     salEva = b - (funcion(b) * (b - a)) / (funcion(b) - funcion(a)); % Calculo de xr
     error_actual = abs((salEva - b) / salEva) * 100; %Calculo del error porcentual de esta iteracion
